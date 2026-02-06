@@ -1,0 +1,147 @@
+<div id="book-a-free-demo-intensive" class="scholarship-form">
+    <form id="demoForm" class="demo-form-card" novalidate>
+        <div class="demo-card-header">
+            <div class="demo-card-title">Book a Live Demo<br />For <span>Free !</span></div>
+            <div class="demo-avatar"><img
+                    src='https://nxtwave-website-media-files.s3.ap-south-1.amazonaws.com/ccbp-website/nxtwave-intensive-2.0/demo-embed-form-person-image.png'
+                    alt='avatar' loading='lazy' /></div>
+        </div>
+
+        <label class="field-label">Name
+            <input type="text" name="name" placeholder="Enter Your Name" required />
+        </label>
+
+        <label class="field-label">Mobile Number (WhatsApp Number)
+            <div class="phone-row">
+                <select name="country" class="country-select">
+                    <option>IN +91</option>
+                </select>
+                <input type="tel" name="mobile" placeholder="Enter Mobile Number" required />
+            </div>
+        </label>
+
+        <label class="field-label">Highest Qualification
+            <select name="qualification">
+                <option selected disabled>Select Highest Qualification</option>
+                <option>B.Tech / BE</option>
+                <option>B.Sc</option>
+                <option>B.Com</option>
+                <option>BBA</option>
+                <option>Other</option>
+            </select>
+        </label>
+
+        <label class="field-label">Native State
+            <input type="text" name="state" placeholder="Enter your State" />
+        </label>
+
+        <div class="terms-note">By proceeding further, I agree to the <a href="#">Terms & Conditions</a> and <a
+                href="#">Privacy Policy</a> of NxtWave</div>
+
+        <button type="submit" class="submit-btn">Book a free Demo</button>
+    </form>
+    <style>
+        .demo-form-card {
+            width: 360px;
+            background: #fff;
+            border-radius: 12px;
+            padding: 22px 20px;
+            box-shadow: 0 12px 30px rgba(8, 28, 43, 0.12);
+            font-family: inherit;
+            color: #1e2b3b;
+            max-height: 520px;
+            overflow: auto
+        }
+
+        .demo-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px
+        }
+
+        .demo-card-title {
+            font-weight: 700;
+            font-size: 20px;
+            line-height: 1.05
+        }
+
+        .demo-card-title span {
+            color: #6f2bd0
+        }
+
+        .demo-avatar img {
+            width: 64px;
+            height: 64px;
+            border-radius: 6px
+        }
+
+        .field-label {
+            display: block;
+            font-size: 13px;
+            color: #55606a;
+            margin-top: 14px
+        }
+
+        .field-label input,
+        .field-label select {
+            display: block;
+            width: 100%;
+            padding: 12px 14px;
+            margin-top: 8px;
+            border: 1px solid #e6e9ef;
+            border-radius: 8px;
+            background: #fff;
+            font-size: 14px
+        }
+
+        .phone-row {
+            display: flex;
+            gap: 8px
+        }
+
+        .country-select {
+            width: 28%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #e6e9ef;
+            background: #fafbfd
+        }
+
+        .phone-row input {
+            flex: 1
+        }
+
+        .terms-note {
+            font-size: 12px;
+            color: #6b7280;
+            margin-top: 14px
+        }
+
+        .terms-note a {
+            color: #1463ff;
+            text-decoration: underline
+        }
+
+        .submit-btn {
+            width: 100%;
+            margin-top: 14px;
+            background: linear-gradient(90deg, #6f2bd0, #7b5af5);
+            color: #fff;
+            padding: 12px;
+            border-radius: 10px;
+            border: 0;
+            font-weight: 700;
+            cursor: pointer
+        }
+
+        @media (max-width:991px) {
+            .demo-form-card {
+                width: 100%;
+                box-shadow: none;
+                border-radius: 8px;
+                padding: 16px
+            }
+        }
+    </style>
+</div>

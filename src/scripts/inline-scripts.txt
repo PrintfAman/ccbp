@@ -1,0 +1,498 @@
+﻿----- SCRIPT 1 -----
+WebFont.load({  google: {    families: ["Droid Sans:400,700","Montserrat:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic","Exo:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic","Anton:300,400,500,600,700","Caveat:300,400,500,600,700","DM Sans:300,400,500,600,700","Dela Gothic One:300,400,500,600,700","Figtree:300,400,500,600,700","Handjet:300,400,500,600,700","Inter:300,400,500,600,700","Inter:300,400,500,600,700","Kalam:300,400,500,600,700","Orbitron:300,400,500,600,700","Outfit:300,400,500,600,700","Plus Jakarta Sans:300,400,500,600,700","Source Code Pro:300,400,500,600,700"]  }});
+
+----- SCRIPT 2 -----
+try{Typekit.load();}catch(e){}
+
+----- SCRIPT 3 -----
+!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);
+
+----- SCRIPT 4 -----
+function shouldForwardQueryParams() {
+    return document.location.search.substring(1) !== ''
+}
+
+function forwardQueryParams() {
+    if(shouldForwardQueryParams()) {
+        var destinationDomains;
+        var joinDemoURL = window.location.toString().includes("intensive-ad")
+        if (joinDemoURL) {
+            destinationDomains = ['forms.ccbp.in','www.ccbp.in', 'accounts.ccbp.in', 'nxtwave.freshteam.com','www.niatindia.com', 'apply.niatindia.com']
+        } 
+        else {
+            destinationDomains = ['forms.ccbp.in','www.ccbp.in', 'accounts.ccbp.in', 'nxtwave.freshteam.com','www.niatindia.com', 'apply.niatindia.com']
+        }
+
+        var currentLocationParams = new URLSearchParams(
+            document.location.search.substring(1)
+        )
+        const queryParams = [
+            'utm_source',
+            'utm_medium',
+            'utm_campaign',
+            'utm_content',
+            'invite_code',
+        ]
+        var links = document.querySelectorAll('a')
+  for (var linkIndex = 0; linkIndex < links.length; linkIndex++) {
+    var currentLinkElement = links[linkIndex]
+    var linkURL = currentLinkElement.href
+    try { 
+      linkURL = new URL(linkURL)
+      if (destinationDomains.includes(linkURL.host)) {
+        var linkSearchParams = new URLSearchParams(linkURL.search.substring(1))
+        for (
+          var queryParamIndex = 0;
+          queryParamIndex < queryParams.length;
+          queryParamIndex++
+        ) {
+          var queryParam = queryParams[queryParamIndex]
+          if (
+            !linkSearchParams.has(queryParam) &&
+            currentLocationParams.has(queryParam)
+          ) {
+            linkSearchParams.append(
+              queryParam,
+              currentLocationParams.get(queryParam)
+            )
+          }
+        }
+        linkURL.search = '?' + linkSearchParams.toString()
+        currentLinkElement.href = linkURL.toString()
+      }
+    } catch (e) {
+      console.log('Linkurl', linkURL, e.message)
+    }
+  }
+    }
+}
+
+----- SCRIPT 5 -----
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                            
+    new Date().getTime(),event:'gtm.js'});let f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-KPFWFTR');
+
+----- SCRIPT 6 -----
+/* Whatsapp Bot */
+    function getLegitUTMParams() {
+      const queryParams = new Set([
+        "utm_source",
+        "utm_medium",
+        "utm_campaign",
+        "utm_content",
+        "utm_term",
+        "invite_code",
+      ]);
+      const currentLocationParams = new URLSearchParams(document.location.search);
+      const validUTMs = {};
+      queryParams.forEach((queryParam) => {
+      if (currentLocationParams.has(queryParam)) {
+        validUTMs[queryParam] = currentLocationParams.get(queryParam);
+      }
+    });
+      return validUTMs;
+    }
+    var NonPrintableCoder = {
+      NON_PRINTABLES: ["\u200b", "\u200c", "\u200d", "\u200e"],
+      SEPARATOR: "\u200f",
+      encode: function(str) {
+        var base = this.NON_PRINTABLES.length;
+        var output = "";
+ 
+        for (var i = 0; i < str.length; i++) {
+            var num = str.charCodeAt(i);
+            var encodedChar = "";
+            while (num > 0) {
+                encodedChar = this.NON_PRINTABLES[num % base] + encodedChar;
+                num = Math.floor(num / base);
+            }
+            output += encodedChar + this.SEPARATOR;
+        }
+ 
+        return output;
+    },
+    };
+    function combineUTMParams(params) {
+      return Object.keys(params)
+        .map(
+          (key) => `${encodeURIComponent(key)}:${encodeURIComponent(params[key])}`
+        )
+        .join("|");
+    }
+
+----- SCRIPT 7 -----
+const utmParams = getLegitUTMParams();
+  const combinedUTM = combineUTMParams(utmParams);
+  const encodedUTM = NonPrintableCoder.encode(combinedUTM);
+
+----- SCRIPT 8 -----
+jQuery(function($) {
+        var $showMoreUpgrades = $('.show-more-upgrades'); // Button container class
+        var $upgradesContainer2 = $('.upgrades-container-2'); // The container to show/hide
+        var $downArrow = $('.down-arrow-icon'); // Icon class within button container
+        var $hideShowText = $('.hide-show-txt'); // Text class within button container
+
+        $showMoreUpgrades.click(function() {
+            // Toggle 'open' class to change state
+            $(this).toggleClass('open');
+            
+            // Check if the container is now 'open'
+            if ($(this).hasClass('open')) {
+                // If now open, show container and change text and icon
+                $upgradesContainer2.slideDown(400);
+                $downArrow.css({
+                    transform: 'rotate(180deg)',
+                    transition: 'all 0.4s ease'
+                });
+                $hideShowText.text("Hide All Upgrades");
+            } else {
+                // If not open, hide container and revert text and icon
+                $upgradesContainer2.slideUp(400);
+                $downArrow.css({
+                    transform: 'rotate(0deg)',
+                    transition: 'all 0.4s ease'
+                });
+                $hideShowText.text("Show All Upgrades");
+            }
+        });
+    });
+
+----- SCRIPT 9 -----
+jQuery(function ($) {
+var $question = $('.faq-q-icon-container'); //question and icon container class
+      var $answer = $('.faq-ans'); //paragraph container class
+      var $icon = $('.icon-14') // icon class which is in question icon cotainer
+      
+        $question.click(function(){
+            $answer.slideUp(600) 		// Hide all answers
+        
+            // Check if this answer is already open
+            if($(this).hasClass('open')){
+                // If already open, remove 'open' class and hide answer
+                $(this).removeClass('open')
+                        .next($answer).slideUp(400)
+    // transforms icon 
+                $(this).find(".icon-14").css({
+           transform: 'rotate(0deg)',
+                    transition: 'all 0.4s ease'
+          })
+                              
+            // If it is not open...
+            }else{
+                // Remove 'open' class from all other questions
+                $question.removeClass('open')
+    // transforms icon 
+          $question.find(".icon-14").css({
+           transform: 'rotate(0deg)',
+                    transition: 'all 0.4s ease'
+          })
+    
+                // Open this answer and add 'open' class
+                
+                $(this).addClass('open')
+                    .next($answer).slideDown(400)
+    // transforms icon 
+                $(this).find(".icon-14").css({
+            transform: 'rotate(180deg)',
+                    transition: 'all 0.4s ease'
+          })
+                
+                       
+                         
+            }
+        });
+    
+    });
+
+----- SCRIPT 10 -----
+function cookieRun(cookieDivEl, okBtnEl) {
+    var cookieKey = 'jSiq8H2QV2';
+    
+    if (typeof Cookies !== 'undefined') {
+      if (Cookies.get(cookieKey) !== undefined) {
+        cookieDivEl.style.display = "none";
+      }
+
+      if (okBtnEl) {
+        okBtnEl.onclick = function() {
+          if (Cookies.get(cookieKey) === undefined) {
+            Cookies.set(cookieKey, 'true', { expires: 30 });
+          }
+        };
+      }
+
+    } else {
+      console.warn("Cookies library not available. Skipping cookie logic.");
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", function() {
+    var cookieDivEl = document.getElementById("modal2");
+    var okBtnEl = document.getElementById("close-modal2");
+
+    if (cookieDivEl && okBtnEl) {
+      cookieRun(cookieDivEl, okBtnEl);
+    }
+  });
+
+----- SCRIPT 11 -----
+document.addEventListener('DOMContentLoaded', () => {
+  // Select all anchors with an href attribute that contains "ccbp.in"
+  const anchors = document.querySelectorAll('a[href*="ccbp.in"]');
+
+  // Loop through the selected anchors
+  for (const anchor of anchors) {
+    // Set the referrer policy for the anchor to "no-referrer-when-downgrade"
+    anchor.referrerPolicy = 'no-referrer-when-downgrade';
+  }
+});
+
+----- SCRIPT 12 -----
+const blockedIPs = [
+  "103.172.179.82","103.172.179.83","103.172.179.84","103.172.179.85",
+  "45.249.76.98","45.249.76.99","45.249.76.100","45.249.76.101",
+  "45.249.76.102","45.249.76.103","45.249.76.104","45.249.76.105",
+  "45.249.76.106","45.249.76.107","45.249.76.108","45.249.76.109",
+  "103.77.26.50","103.77.26.51","103.77.26.52","103.77.26.53",
+  "103.42.251.98","103.42.251.99","103.42.251.100","103.42.251.101",
+  "111.93.17.114","111.93.17.115","111.93.17.116","111.93.17.117",
+  "103.172.179.81","103.172.179.86","45.249.76.97","45.249.76.110",
+  "103.77.26.49","103.77.26.54","103.42.251.97","103.42.251.102",
+  "111.93.17.113", "111.93.17.118"
+];
+
+fetch("https://api64.ipify.org?format=json")
+  .then(res => res.json())
+  .then(data => {
+    const userIp = data.ip;
+    console.log("Visitor IP:", userIp);
+
+    if (!blockedIPs.includes(userIp)) {
+      console.log("âœ… Allowed â†’ Loading Convertful");
+      const script = document.createElement("script");
+      script.src = "https://app.convertful.com/Convertful.js?owner=82067";
+      document.head.appendChild(script);
+    } else {
+      console.log("ðŸš« Blocked Convertful for IP:", userIp);
+    }
+  })
+  .catch(err => {
+    console.error("âš ï¸ IP check failed, not loading Convertful", err);
+  });
+
+----- SCRIPT 13 -----
+document.addEventListener("DOMContentLoaded", () => {
+  const curriculumUrls = {
+  "fundamentals-curriculum": "nxtwave-intensive-2.0/fundamentals-curriculum-intensive",
+  "mern-fullstack-curriculum-intensive": "nxtwave-intensive-2.0/mern-fullstack-curriculum-intensive",
+  "java-fullstack-curriculum": "intensive/java-fullstack-curriculum",
+  "qa-testing-curriculum-intensive": "nxtwave-intensive-2.0/qa-testing-curriculum-intensive-v2",
+  "data-analytics": "nxtwave-intensive-2.0/data-analytics-intensive-curriculum"
+};
+let curriculumKey;
+  const popup = document.getElementById("view-academy-curriculum-form-popup");
+  const closeBtn = document.getElementById("closePopup");
+
+  document.querySelectorAll('[popup="true"]').forEach(trigger => {
+    trigger.addEventListener("click", e => {
+      e.preventDefault();
+      curriculumKey = trigger.getAttribute("view-curriculum");
+      const isLoggedIn = JSON.parse(
+  sessionStorage.getItem(`is_logged_in_`) || "false"
+);
+
+    if (isLoggedIn) {
+      const url = `https://nxtwave-website-media-files.s3.ap-south-1.amazonaws.com/ccbp-website/${curriculumUrls[curriculumKey]}.pdf`;
+      window.open(url, "_blank");
+    } else {
+      popup.style.display = 'flex';
+      document.body.style.overflow = "hidden";  
+      document.querySelector(".learn_wrapper").style.zIndex = "-1";
+      document.querySelector(".slider-398").style.zIndex = "-1";
+      document.querySelector(".slider-399").style.zIndex = "-1";
+  // close popup
+    if (closeBtn) {
+    closeBtn.addEventListener("click", () => {
+     popup.style.display = 'none';
+      document.body.style.overflow = "";
+      document.querySelector(".learn_wrapper").style.zIndex = "1";
+      document.querySelector(".slider-398").style.zIndex = "1";
+      document.querySelector(".slider-399").style.zIndex = "1";     
+    });
+  }
+}
+    });
+  });
+  window.addEventListener("message", (event) => {
+  
+  if (event.data.type === "PUBLIC_FORM_SUBMISSION_SUCCESS") {
+    const url = `https://nxtwave-website-media-files.s3.ap-south-1.amazonaws.com/ccbp-website/${curriculumUrls[curriculumKey]}.pdf`;
+      window.open(url, "_blank");
+  document.querySelector(".waiting-card").style.display ='flex';
+   const linkh = document.querySelector(".clickhere-link");
+     linkh.href = `https://nxtwave-website-media-files.s3.ap-south-1.amazonaws.com/ccbp-website/${curriculumUrls[curriculumKey]}.pdf`;
+ sessionStorage.setItem(
+  `is_logged_in_`,
+  JSON.stringify(true)
+);
+
+   setTimeout(() => {
+    popup.style.display = 'none';
+     document.querySelector(".learn_wrapper").style.zIndex = "1";
+     document.querySelector(".slider-398").style.zIndex = "1";
+     document.querySelector(".slider-399").style.zIndex = "1";
+     document.body.style.overflow = "";
+
+}, 5000);
+  }
+});
+
+});
+
+----- SCRIPT 14 -----
+forwardQueryParams()
+window.addEventListener('load', (event) => {
+    forwardQueryParams()
+
+});
+document.addEventListener('readystatechange', event => {
+   if (event.target.readyState === 'complete') {
+   forwardQueryParams()
+  
+  }
+});
+
+----- SCRIPT 15 -----
+//Mouse scroll animation
+       const floatingButtonwhatsppbutton = document.getElementById("chat-with-us-div");
+    //  const cookiediv = document.getElementById("modal2");
+
+function pageScroll(){
+   if(screen.width<480)
+      {
+  if (window.pageYOffset > 1500) {
+      floatingButtonwhatsppbutton.style.display = "flex";
+   
+   //  cookiediv.style.position="fixed";
+     // cookiediv.style.bottom="10%";
+    
+  }
+  else{
+      floatingButtonwhatsppbutton.style.display = "none";
+      // cookiediv.style.position="fixed";
+    //  cookiediv.style.bottom="0%"; 
+ 
+  }
+}
+}
+window.addEventListener("scroll", () => pageScroll());
+
+----- SCRIPT 16 -----
+let popupObjects = [
+{
+  'event': 'popup_visit',
+  'popup_id':'f66330cecd393',
+  'popup_name': 'book_a_slot_popup',
+},
+{
+  'event': 'popup_visit',
+  'popup_id':'d555562c27fe6',
+  'popup_name': 'scholarship_popup_organic',
+},
+]
+
+
+let uniqueInterval = setInterval(()=>{
+var numItems = $("#modelBackdrip").length;
+if(numItems === 1){
+clearInterval(uniqueInterval)
+
+
+let popid = document.getElementById("modelBackdrip").getAttribute("data-poptin-id")
+
+  popupObjects.forEach(Element => {
+    if(Element.popup_id === popid){
+    window.dataLayer.push(Element)
+    }
+  })
+
+}
+
+},1000)
+
+// give attribute "[data-sectionid]" to sections which you want to trace the data 
+
+
+let lastY = 0;
+const targetElements = document.querySelectorAll('[data-sectionid]');
+const options = { root: null, rootMargin: "-30%" };
+
+try {
+  targetElements.forEach(targetElement => {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const sectionid = entry.target.closest('[data-sectionid]').id;
+
+          if (entry.boundingClientRect.y < lastY) {
+            dataLayer.push({
+              'event': 'section_viewed',
+              'section_id': sectionid,
+              'scroll_direction': `bottom_to_top`
+            });
+          } else {
+            dataLayer.push({
+              'event': 'section_viewed',
+              'section_id': sectionid,
+              'scroll_direction': `top_to_bottom`
+            });
+          }
+        }
+      });
+    }, options);
+    observer.observe(targetElement);
+  });
+} catch (error) {
+  console.error('An error occurred:', error);
+}
+
+----- SCRIPT 17 -----
+let messageToCombineInWhatsapp = "Hi"
+let encodebotelement = document.getElementById("chat-with-us-intensive");
+//let urlforencodebotelement = "https://forms.ccbp.in/public/form/whatsapp-us-have-a-query"
+let urlforencodebotelement = "https://wa.me/918688815840?text="+encodeURIComponent(messageToCombineInWhatsapp + encodedUTM);
+encodebotelement.addEventListener('click',()=>{
+window.open(urlforencodebotelement, "_blank");
+})
+
+----- SCRIPT 18 -----
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.tabs-content-cont').forEach(parent => {
+    const swiperEl = parent.querySelector('.swiper');
+    const nextBtn = parent.querySelector('.right-button');
+    const prevBtn = parent.querySelector('.left-button');
+    const slides = swiperEl.querySelectorAll('.swiper-slide');
+
+    if (slides.length < 4) {
+      nextBtn.style.display = 'none';
+      prevBtn.style.display = 'none';
+    } else {
+      new Swiper(swiperEl, {
+        slidesPerView: 3,
+        spaceBetween: 5,
+        loop: true,
+        navigation: { nextEl: nextBtn, prevEl: prevBtn },
+        breakpoints: {
+          0: { slidesPerView: 1 },
+          768: { slidesPerView: 2 },
+          1024: { slidesPerView: 3 }
+        }
+      });
+    }
+  });
+});
+
+
