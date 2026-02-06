@@ -351,77 +351,116 @@
       max-height: 520px;
       overflow: auto;
     }
+.field-label{
+  display:block;
+  font-size:13px;
+  font-weight:500;
+  color:#475467;
+  margin-top:16px;
+}
 
-    .field-label {
-      display: block;
-      font-size: 13px;
-      color: #55606a;
-      margin-top: 14px;
-      font-weight: 500;
-    }
+   .field-label input{
+  width:100%;
+  height:48px;
+  padding:0 14px;
+  margin-top:8px;
+  border:1px solid #e4e7ec;
+  border-radius:12px;
+  background:#fff;
+  font-size:14.5px;
+  color:#344054;
+  transition:.25s;
+}
 
-    .field-label input,
-    .field-label select {
-      display: block;
-      width: 100%;
-      padding: 12px 14px;
-      margin-top: 8px;
-      border: 1px solid #e6e9ef;
-      border-radius: 8px;
-      background: #fff;
-      font-size: 14px;
-      color: #1e2b3b;
-    }
+.field-label input:focus{
+  outline:none;
+  border-color:#7b5af5;
+  box-shadow:0 0 0 4px rgba(123,90,245,.12);
+}
+
 
     .phone-row {
       display: flex;
       gap: 8px;
     }
 
-    .country-select {
-      width: 28%;
-      padding: 12px;
-      border-radius: 8px;
-      border: 1px solid #e6e9ef;
-      background: #fafbfd;
-      font-size: 14px;
-    }
+  .country-select {
+  flex: 0 0 95px;          /* fixed width instead of % */
+  min-width: 85px;        /* prevents shrinking */
+  height: 44px;           /* matches input height */
+  padding: 0 10px;        /* better vertical alignment */
+  border: 1px solid #e6e9ef;
+  border-radius: 8px 0 0 8px;  /* merges with input */
+  background: #fafbfd;
+  font-size: 14px;
+  appearance: none;       /* removes ugly native arrow */
+}
+
 
     .phone-row input {
       flex: 1;
     }
 
-    /* Custom select wrapper for arrow rotation */
-    .select-wrapper {
-      position: relative;
-      margin-top: 8px;
-    }
+ /* ---------- SELECT WRAPPER ---------- */
 
-    .select-wrapper select {
-      width: 100%;
-      padding: 12px 40px 12px 14px;
-      margin-top: 0;
-      appearance: none;
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      cursor: pointer;
-    }
+.select-wrapper{
+  position: relative;
+  margin-top: 8px;
+}
 
-    .select-wrapper::after {
-      content: '▼';
-      position: absolute;
-      right: 14px;
-      top: 50%;
-      transform: translateY(-50%);
-      pointer-events: none;
-      transition: transform 0.3s ease;
-      font-size: 12px;
-      color: #55606a;
-    }
+/* ---------- SELECT FIELD ---------- */
 
-    .select-wrapper.open::after {
-      transform: translateY(-50%) rotate(180deg);
-    }
+.select-wrapper select{
+  width:100%;
+  height:48px;
+  padding:0 44px 0 14px;
+  border-radius:12px;
+  border:1px solid #e4e7ec;
+  background:#fff;
+  font-size:14.5px;
+  font-weight:500;
+  color:#344054;
+  appearance:none;
+  cursor:pointer;
+  transition:all .25s ease;
+}
+
+/* HOVER */
+
+.select-wrapper select:hover{
+  border-color:#d0d5dd;
+}
+
+/* FOCUS (Premium Look) */
+
+.select-wrapper select:focus{
+  outline:none;
+  border-color:#7b5af5;
+  box-shadow:0 0 0 4px rgba(123,90,245,.12);
+}
+
+/* ---------- CUSTOM ARROW ---------- */
+
+.select-wrapper::after{
+  content:'';
+  position:absolute;
+  right:16px;
+  top:50%;
+  width:7px;
+  height:7px;
+  border-right:2px solid #667085;
+  border-bottom:2px solid #667085;
+  transform:translateY(-70%) rotate(45deg);
+  transition:.25s ease;
+  pointer-events:none;
+}
+
+/* ROTATE WHEN OPEN */
+
+.select-wrapper.active::after{
+  transform:translateY(-30%) rotate(-135deg);
+}
+
 
     .terms-note {
       font-size: 12px;
@@ -6876,13 +6915,19 @@
 </section>
 
 <!-- Add this right before </body> -->
-    <style>
-      .section-2647 .container-30.cc-flex-h .col-left,
-      .section-2647 .col-left,
-      .col-left {
-        position: relative !important;
-        top: 0 !important;
-      }
-    </style>
+<script>
+document.querySelectorAll(".select-wrapper select").forEach(select=>{
+
+  select.addEventListener("focus",()=>{
+    select.parentElement.classList.add("active");
+  });
+
+  select.addEventListener("blur",()=>{
+    select.parentElement.classList.remove("active");
+  });
+
+});
+</script>
+
   </body>
 </html>

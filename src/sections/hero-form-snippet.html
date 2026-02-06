@@ -100,13 +100,18 @@
             gap: 8px
         }
 
-        .country-select {
-            width: 28%;
-            padding: 12px;
-            border-radius: 8px;
-            border: 1px solid #e6e9ef;
-            background: #fafbfd
-        }
+     .country-select {
+  flex: 0 0 95px;          /* fixed width instead of % */
+  min-width: 85px;        /* prevents shrinking */
+  height: 44px;           /* matches input height */
+  padding: 0 10px;        /* better vertical alignment */
+  border: 1px solid #e6e9ef;
+  border-radius: 8px 0 0 8px;  /* merges with input */
+  background: #fafbfd;
+  font-size: 14px;
+  appearance: none;       /* removes ugly native arrow */
+}
+
 
         .phone-row input {
             flex: 1
