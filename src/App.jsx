@@ -1,4 +1,5 @@
-﻿import { useEffect } from 'react';
+﻿import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useEffect } from 'react';
 import Home from './pages/Home.jsx';
 import inlineScriptsRaw from './scripts/inline-scripts.txt?raw';
 
@@ -81,11 +82,46 @@ function ScriptLoader() {
   return null;
 }
 
-export default function App() {
+function CCBPIframe() {
+  return (
+    <div style={{ 
+      width: '100vw', 
+      height: '100vh', 
+      margin: 0, 
+      padding: 0,
+      overflow: 'hidden'
+    }}>
+      <iframe 
+        src="https://www.ccbp.in/intensive"
+        style={{ 
+          width: '100%', 
+          height: '100%', 
+          border: 'none',
+          display: 'block'
+        }}
+        title="CCBP Intensive"
+        allowFullScreen
+      />
+    </div>
+  );
+}
+
+function OriginalSite() {
   return (
     <>
       <Home />
       <ScriptLoader />
     </>
+  );
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<OriginalSite />} />
+        <Route path="/ccbp" element={<CCBPIframe />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
