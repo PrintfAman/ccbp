@@ -7,65 +7,8 @@ try{Typekit.load();}catch(e){}
 ----- SCRIPT 3 -----
 !function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);
 
------ SCRIPT 4 -----
-function shouldForwardQueryParams() {
-    return document.location.search.substring(1) !== ''
-}
 
-function forwardQueryParams() {
-    if(shouldForwardQueryParams()) {
-        var destinationDomains;
-        var joinDemoURL = window.location.toString().includes("intensive-ad")
-        if (joinDemoURL) {
-            destinationDomains = ['forms.ccbp.in','www.ccbp.in', 'accounts.ccbp.in', 'nxtwave.freshteam.com','www.niatindia.com', 'apply.niatindia.com']
-        } 
-        else {
-            destinationDomains = ['forms.ccbp.in','www.ccbp.in', 'accounts.ccbp.in', 'nxtwave.freshteam.com','www.niatindia.com', 'apply.niatindia.com']
-        }
 
-        var currentLocationParams = new URLSearchParams(
-            document.location.search.substring(1)
-        )
-        const queryParams = [
-            'utm_source',
-            'utm_medium',
-            'utm_campaign',
-            'utm_content',
-            'invite_code',
-        ]
-        var links = document.querySelectorAll('a')
-  for (var linkIndex = 0; linkIndex < links.length; linkIndex++) {
-    var currentLinkElement = links[linkIndex]
-    var linkURL = currentLinkElement.href
-    try { 
-      linkURL = new URL(linkURL)
-      if (destinationDomains.includes(linkURL.host)) {
-        var linkSearchParams = new URLSearchParams(linkURL.search.substring(1))
-        for (
-          var queryParamIndex = 0;
-          queryParamIndex < queryParams.length;
-          queryParamIndex++
-        ) {
-          var queryParam = queryParams[queryParamIndex]
-          if (
-            !linkSearchParams.has(queryParam) &&
-            currentLocationParams.has(queryParam)
-          ) {
-            linkSearchParams.append(
-              queryParam,
-              currentLocationParams.get(queryParam)
-            )
-          }
-        }
-        linkURL.search = '?' + linkSearchParams.toString()
-        currentLinkElement.href = linkURL.toString()
-      }
-    } catch (e) {
-      console.log('Linkurl', linkURL, e.message)
-    }
-  }
-    }
-}
 
 ----- SCRIPT 5 -----
 (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -238,17 +181,14 @@ function cookieRun(cookieDivEl, okBtnEl) {
     }
   });
 
------ SCRIPT 11 -----
-document.addEventListener('DOMContentLoaded', () => {
-  // Select all anchors with an href attribute that contains "ccbp.in"
-  const anchors = document.querySelectorAll('a[href*="ccbp.in"]');
+
 
   // Loop through the selected anchors
   for (const anchor of anchors) {
     // Set the referrer policy for the anchor to "no-referrer-when-downgrade"
     anchor.referrerPolicy = 'no-referrer-when-downgrade';
   }
-});
+
 
 ----- SCRIPT 12 -----
 const blockedIPs = [
@@ -264,24 +204,6 @@ const blockedIPs = [
   "111.93.17.113", "111.93.17.118"
 ];
 
-fetch("https://api64.ipify.org?format=json")
-  .then(res => res.json())
-  .then(data => {
-    const userIp = data.ip;
-    console.log("Visitor IP:", userIp);
-
-    if (!blockedIPs.includes(userIp)) {
-      console.log("âœ… Allowed â†’ Loading Convertful");
-      const script = document.createElement("script");
-      script.src = "https://app.convertful.com/Convertful.js?owner=82067";
-      document.head.appendChild(script);
-    } else {
-      console.log("ðŸš« Blocked Convertful for IP:", userIp);
-    }
-  })
-  .catch(err => {
-    console.error("âš ï¸ IP check failed, not loading Convertful", err);
-  });
 
 ----- SCRIPT 13 -----
 document.addEventListener("DOMContentLoaded", () => {
@@ -328,7 +250,7 @@ let curriculumKey;
   });
   window.addEventListener("message", (event) => {
   
-  if (event.data.type === "PUBLIC_FORM_SUBMISSION_SUCCESS") {
+   {
     const url = `https://nxtwave-website-media-files.s3.ap-south-1.amazonaws.com/ccbp-website/${curriculumUrls[curriculumKey]}.pdf`;
       window.open(url, "_blank");
   document.querySelector(".waiting-card").style.display ='flex';
@@ -390,74 +312,7 @@ function pageScroll(){
 }
 window.addEventListener("scroll", () => pageScroll());
 
------ SCRIPT 16 -----
-let popupObjects = [
-{
-  'event': 'popup_visit',
-  'popup_id':'f66330cecd393',
-  'popup_name': 'book_a_slot_popup',
-},
-{
-  'event': 'popup_visit',
-  'popup_id':'d555562c27fe6',
-  'popup_name': 'scholarship_popup_organic',
-},
-]
 
-
-let uniqueInterval = setInterval(()=>{
-var numItems = $("#modelBackdrip").length;
-if(numItems === 1){
-clearInterval(uniqueInterval)
-
-
-let popid = document.getElementById("modelBackdrip").getAttribute("data-poptin-id")
-
-  popupObjects.forEach(Element => {
-    if(Element.popup_id === popid){
-    window.dataLayer.push(Element)
-    }
-  })
-
-}
-
-},1000)
-
-// give attribute "[data-sectionid]" to sections which you want to trace the data 
-
-
-let lastY = 0;
-const targetElements = document.querySelectorAll('[data-sectionid]');
-const options = { root: null, rootMargin: "-30%" };
-
-try {
-  targetElements.forEach(targetElement => {
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const sectionid = entry.target.closest('[data-sectionid]').id;
-
-          if (entry.boundingClientRect.y < lastY) {
-            dataLayer.push({
-              'event': 'section_viewed',
-              'section_id': sectionid,
-              'scroll_direction': `bottom_to_top`
-            });
-          } else {
-            dataLayer.push({
-              'event': 'section_viewed',
-              'section_id': sectionid,
-              'scroll_direction': `top_to_bottom`
-            });
-          }
-        }
-      });
-    }, options);
-    observer.observe(targetElement);
-  });
-} catch (error) {
-  console.error('An error occurred:', error);
-}
 
 ----- SCRIPT 17 -----
 let messageToCombineInWhatsapp = "Hi"

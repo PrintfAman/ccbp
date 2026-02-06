@@ -11,12 +11,7 @@ const BODY_EXTERNAL_SCRIPTS = [
   'https://cdn.prod.website-files.com/5fa61cbbf0d432b3230f62b1/js/ccbp-4-0-technical-intensive-project.1a1ee8e2.aee8c20b60a57432.js',
 ];
 
-const FORM_MODULE_SCRIPTS = [
-  'https://forms.ccbp.in/webflow/runtime.7ade6786083c3cdb.js',
-  'https://forms.ccbp.in/webflow/polyfills.22b45ce383b6ed1d.js',
-  'https://forms.ccbp.in/webflow/bookAFreeDemo.93619acbbc6cdbad.js',
-  'https://forms.ccbp.in/webflow/techIntensiveDownloadCurriculum.166c75ca908a2657.js',
-];
+
 
 /* ---------------- HELPERS ---------------- */
 
@@ -72,10 +67,7 @@ function ScriptLoader() {
           await loadScript(src);
         }
 
-        for (const src of FORM_MODULE_SCRIPTS) {
-          if (cancelled) return;
-          await loadScript(src, { type: 'module' });
-        }
+       
 
         if (!cancelled) {
           runInlineScripts(postWebflowInline);
