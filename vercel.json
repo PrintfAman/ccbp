@@ -1,9 +1,8 @@
 {
-  "redirects": [
+  "rewrites": [
     {
       "source": "/(.*)",
-      "destination": "https://www.ccbp.in/intensive",
-      "permanent": true
+      "destination": "https://www.ccbp.in/intensive/$1"
     }
   ]
 }
