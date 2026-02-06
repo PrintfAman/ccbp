@@ -1,7 +1,8 @@
-﻿import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { useEffect } from 'react';
+﻿import { useEffect } from 'react';
 import Home from './pages/Home.jsx';
 import inlineScriptsRaw from './scripts/inline-scripts.txt?raw';
+
+/* ---------------- SCRIPT CONFIG ---------------- */
 
 const BODY_EXTERNAL_SCRIPTS = [
   'https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=5fa61cbbf0d432b3230f62b1',
@@ -17,6 +18,8 @@ const FORM_MODULE_SCRIPTS = [
   'https://forms.ccbp.in/webflow/techIntensiveDownloadCurriculum.166c75ca908a2657.js',
 ];
 
+/* ---------------- HELPERS ---------------- */
+
 function parseInlineScripts(raw) {
   return raw
     .split(/----- SCRIPT \d+ -----/g)
@@ -29,11 +32,14 @@ function loadScript(src, options = {}) {
     const script = document.createElement('script');
     script.src = src;
     script.async = false;
+
     if (options.type) {
       script.type = options.type;
     }
-    script.onload = () => resolve();
+
+    script.onload = resolve;
     script.onerror = () => reject(new Error(`Failed to load ${src}`));
+
     document.body.appendChild(script);
   });
 }
@@ -46,12 +52,16 @@ function runInlineScripts(scripts) {
   });
 }
 
+/* ---------------- SCRIPT LOADER ---------------- */
+
 function ScriptLoader() {
   useEffect(() => {
     let cancelled = false;
+
     const run = async () => {
       try {
         const allInline = parseInlineScripts(inlineScriptsRaw);
+
         const preWebflowInline = allInline.slice(7, 9);
         const postWebflowInline = allInline.slice(9);
 
@@ -67,13 +77,16 @@ function ScriptLoader() {
           await loadScript(src, { type: 'module' });
         }
 
-        if (cancelled) return;
-        runInlineScripts(postWebflowInline);
+        if (!cancelled) {
+          runInlineScripts(postWebflowInline);
+        }
       } catch (err) {
         console.error(err);
       }
     };
+
     run();
+
     return () => {
       cancelled = true;
     };
@@ -82,46 +95,13 @@ function ScriptLoader() {
   return null;
 }
 
-function CCBPIframe() {
-  return (
-    <div style={{ 
-      width: '100vw', 
-      height: '100vh', 
-      margin: 0, 
-      padding: 0,
-      overflow: 'hidden'
-    }}>
-      <iframe 
-        src="https://www.ccbp.in/intensive"
-        style={{ 
-          width: '100%', 
-          height: '100%', 
-          border: 'none',
-          display: 'block'
-        }}
-        title="CCBP Intensive"
-        allowFullScreen
-      />
-    </div>
-  );
-}
+/* ---------------- APP ---------------- */
 
-function OriginalSite() {
+export default function App() {
   return (
     <>
       <Home />
       <ScriptLoader />
     </>
-  );
-}
-
-export default function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<OriginalSite />} />
-        <Route path="/ccbp" element={<CCBPIframe />} />
-      </Routes>
-    </BrowserRouter>
   );
 }
