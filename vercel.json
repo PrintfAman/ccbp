@@ -1,0 +1,10 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "destination": "https://www.ccbp.in/intensive",
+      "permanent": false,
+      "statusCode": 307
+    }
+  ]
+}
